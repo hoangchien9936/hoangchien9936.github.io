@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Sinh Nhật Ngọt Ngào!</title>
+    <!-- Tích hợp Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tích hợp Google Fonts cho font chữ dễ thương -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Sử dụng font chữ tùy chỉnh */
+        body {
+            font-family: 'Quicksand', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .font-handwriting {
+            font-family: 'Pacifico', cursive;
+        }
+        /* Hiệu ứng mờ dần khi cuộn trang */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Hiệu ứng trái tim bay lơ lửng */
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            animation: float 15s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(0) rotate(720deg); opacity: 0.7; }
+        }
+        /* --- HIỆU ỨNG MỚI --- */
+        /* Hiệu ứng trái tim khi click */
+        .click-heart {
+            position: fixed;
+            font-size: 2rem;
+            z-index: 9999;
+            pointer-events: none;
+            animation: fly-up 1.5s ease-out forwards;
+        }
+        @keyframes fly-up {
+            from {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: translate(-50%, -250px) scale(0);
+                opacity: 0;
+            }
+        }
+        /* Nút phát nhạc */
+        #music-box {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(244, 114, 182, 0.8);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        #music-box:hover {
+            transform: scale(1.1);
+            background-color: rgba(236, 72, 153, 1);
+        }
+        #music-box.playing svg {
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-pink-50 text-gray-700">
+
+    <!-- Phần 1: Lời Chào Mở Đầu Dễ Thương -->
+    <header id="main-header" class="h-screen w-full relative flex flex-col justify-center items-center text-center p-4 overflow-hidden bg-gradient-to-br from-pink-300 to-rose-300 cursor-pointer">
+        <!-- Hiệu ứng trái tim bay -->
+        <div class="absolute inset-0 z-0">
+            <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+            <div class="heart" style="left: 20%; animation-delay: -5s; font-size: 1rem;">💖</div>
+            <div class="heart" style="left: 30%; animation-delay: -10s;">💕</div>
+            <div class="heart" style="left: 50%; animation-delay: -3s;">💗</div>
+            <div class="heart" style="left: 70%; animation-delay: -7s; font-size: 1.5rem;">💓</div>
+            <div class="heart" style="left: 85%; animation-delay: -1s;">💞</div>
+        </div>
+        
+        <div class="relative z-10 text-white text-shadow">
+            <!-- 
+                HƯỚNG DẪN: Thay đổi [Tên Người Yêu Cũ] thành tên của người đó.
+            -->
+            <h1 class="font-handwriting text-5xl md:text-7xl">Chúc Mừng Sinh Nhật,</h1>
+            <h1 class="font-handwriting text-5xl md:text-7xl mt-2">[Tên Người Yêu Cũ]!</h1>
+            <p class="mt-4 text-lg md:text-xl font-light">Một ngày thật đặc biệt, cho một người cũng thật đặc biệt.</p>
+            <a href="#message" class="mt-8 inline-block animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24">
+
+        <!-- Phần 2: Lời Nhắn Ngọt Ngào -->
+        <section id="message" class="text-center max-w-3xl mx-auto scroll-animate">
+            <h2 class="font-handwriting text-4xl md:text-5xl text-pink-500 mb-6">Đôi Lời Nhắn Gửi</h2>
+            <!-- 
+                HƯỚNG DẪN: Bạn có thể thay đổi hoặc giữ nguyên lời nhắn dưới đây.
+            -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg shadow-pink-200/50">
+                <p class="text-lg leading-relaxed mb-4">
+                    Thời gian trôi thật nhanh phải không? Dù chúng ta không còn đi chung một con đường, mình vẫn luôn mỉm cười khi nhớ về những kỷ niệm đẹp mà chúng ta đã có. Cảm ơn cậu vì đã từng là một phần đáng yêu trong cuộc sống của mình.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Nhân ngày sinh nhật cậu, mình chân thành chúc cậu một tuổi mới thật rực rỡ, luôn mạnh khỏe, bình an và đạt được mọi ước mơ của mình. Mong cậu sẽ luôn giữ vững nụ cười tỏa nắng và tìm thấy niềm vui trong mỗi khoảnh khắc.
+                </p>
+                 <p class="text-lg leading-relaxed font-semibold mt-4 text-pink-500">
+                    Happy Birthday to you! 🎂
+                </p>
+            </div>
+        </section>
+
+        <!-- Phần 3: Lời Chúc Cho Tương Lai (được đẩy lên) -->
+        <section id="future" class="text-center max-w-3xl mx-auto mt-20 md:mt-24 scroll-animate">
+            <h2 class="font-handwriting text-4xl md:text-5xl text-pink-500 mb-6">Và Cho Chặng Đường Phía Trước...</h2>
+            <p class="text-lg leading-relaxed bg-white p-8 rounded-2xl shadow-lg shadow-pink-200/50">
+                Mong rằng tuổi mới sẽ mở ra một chương mới thật nhiều niềm vui, cơ hội và thành công. Hãy luôn là phiên bản tốt nhất của chính mình và sống một cuộc đời thật trọn vẹn nhé!
+            </p>
+        </section>
+
+    </main>
+    
+    <!-- --- HIỆU ỨNG MỚI: HỘP NHẠC --- -->
+    <div id="music-box" title="Phát nhạc">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-12c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 6l12-3" />
+        </svg>
+    </div>
+
+
+    <!-- Phần chân trang -->
+    <footer class="text-center py-8 mt-16">
+        <p class="text-pink-400">
+            <!-- 
+                HƯỚNG DẪN: Thay đổi [Tên Của Bạn] thành tên của bạn.
+            -->
+            Thân gửi từ, [Tên Của Bạn]
+        </p>
+    </footer>
+
+    <script>
+        // JavaScript để tạo hiệu ứng xuất hiện khi cuộn trang
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.scroll-animate');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+            
+            // --- LOGIC HIỆU ỨNG MỚI ---
+
+            // 1. Hiệu ứng trái tim khi click
+            const header = document.getElementById('main-header');
+            header.addEventListener('click', function(e) {
+                const heart = document.createElement('div');
+                heart.classList.add('click-heart');
+                const hearts = ['💖', '💕', '💗', '💓', '💞'];
+                heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+                
+                heart.style.left = `${e.clientX}px`;
+                heart.style.top = `${e.clientY}px`;
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 1500);
+            });
+
+            // 2. Hộp nhạc tương tác
+            const musicBox = document.getElementById('music-box');
+            let audioContext;
+            let oscillator;
+            let isPlaying = false;
+            let noteIndex = 0;
+            let noteTimeout;
+
+            const noteFrequencies = {
+                'C4': 261.63, 'D4': 293.66, 'E4': 329.63, 'F4': 349.23,
+                'G4': 392.00, 'A4': 440.00, 'REST': 0
+            };
+
+            const happyBirthdayTune = [
+                { note: 'C4', duration: 200 }, { note: 'C4', duration: 200 },
+                { note: 'D4', duration: 400 }, { note: 'C4', duration: 400 },
+                { note: 'F4', duration: 400 }, { note: 'E4', duration: 800 },
+                { note: 'REST', duration: 200 },
+                { note: 'C4', duration: 200 }, { note: 'C4', duration: 200 },
+                { note: 'D4', duration: 400 }, { note: 'C4', duration: 400 },
+                { note: 'G4', duration: 400 }, { note: 'F4', duration: 800 },
+                { note: 'REST', duration: 200 },
+                { note: 'C4', duration: 200 }, { note: 'C4', duration: 200 },
+                { note: 'A4', duration: 400 }, { note: 'F4', duration: 400 },
+                { note: 'E4', duration: 400 }, { note: 'D4', duration: 800 },
+                { note: 'REST', duration: 200 },
+                { note: 'A4', duration: 200 }, { note: 'A4', duration: 200 },
+                { note: 'G4', duration: 400 }, { note: 'F4', duration: 400 },
+                { note: 'G4', duration: 400 }, { note: 'F4', duration: 800 },
+            ];
+
+            function playNote() {
+                if (noteIndex >= happyBirthdayTune.length) {
+                    stopMusic();
+                    return;
+                }
+                const { note, duration } = happyBirthdayTune[noteIndex];
+                const freq = noteFrequencies[note];
+                
+                if (oscillator) {
+                    if (freq > 0) {
+                        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+                        oscillator.gain.setValueAtTime(0.1, audioContext.currentTime);
+                    } else {
+                        oscillator.gain.setValueAtTime(0, audioContext.currentTime);
+                    }
+                }
+                noteIndex++;
+                noteTimeout = setTimeout(playNote, duration);
+            }
+
+            function startMusic() {
+                if (!audioContext) {
+                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                 if (oscillator) {
+                    oscillator.stop();
+                }
+                oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.type = 'sine'; // 'sine', 'square', 'sawtooth', 'triangle'
+                oscillator.gain = gainNode.gain;
+                oscillator.start();
+                
+                noteIndex = 0;
+                isPlaying = true;
+                musicBox.classList.add('playing');
+                playNote();
+            }
+
+            function stopMusic() {
+                if (oscillator) {
+                    oscillator.stop();
+                    oscillator = null;
+                }
+                clearTimeout(noteTimeout);
+                isPlaying = false;
+                musicBox.classList.remove('playing');
+            }
+
+            musicBox.addEventListener('click', () => {
+                if (isPlaying) {
+                    stopMusic();
+                } else {
+                    startMusic();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
