@@ -3,301 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chúc Mừng Sinh Nhật Ngọt Ngào!</title>
-    <!-- Tích hợp Tailwind CSS -->
+    <title>Gửi Em!</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Tích hợp Google Fonts cho font chữ dễ thương -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Sử dụng font chữ tùy chỉnh */
         body {
             font-family: 'Quicksand', sans-serif;
-            scroll-behavior: smooth;
+            overflow: hidden;
         }
-        .font-handwriting {
+        .font-pacifico {
             font-family: 'Pacifico', cursive;
         }
-        /* Hiệu ứng mờ dần khi cuộn trang */
-        .scroll-animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .scroll-animate.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Hiệu ứng trái tim bay lơ lửng */
-        .heart {
+        /* Hiệu ứng hộp quà bay lúc mở đầu */
+        .gift-particle {
             position: absolute;
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.5);
-            animation: float 15s infinite ease-in-out;
-        }
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
-            50% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-            100% { transform: translateY(0) rotate(720deg); opacity: 0.7; }
-        }
-        /* --- HIỆU ỨNG MỚI --- */
-        /* Hiệu ứng trái tim khi click */
-        .click-heart {
-            position: fixed;
-            font-size: 2rem;
-            z-index: 9999;
-            pointer-events: none;
-            animation: fly-up 1.5s ease-out forwards;
-        }
-        @keyframes fly-up {
-            from {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-            to {
-                transform: translate(-50%, -250px) scale(0);
-                opacity: 0;
-            }
-        }
-        /* Nút phát nhạc */
-        #music-box {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background-color: rgba(244, 114, 182, 0.8);
-            color: white;
-            border-radius: 50%;
+            bottom: -150px;
+            opacity: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            z-index: 1000;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            width: 50px; /* Kích thước hộp quà bay */
+            height: 50px;
         }
-        #music-box:hover {
-            transform: scale(1.1);
-            background-color: rgba(236, 72, 153, 1);
+        /* Các keyframes cho quỹ đạo bay ngẫu nhiên */
+        @keyframes floatPath1 {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) translateX(15vw) rotate(360deg); opacity: 0; }
         }
-        #music-box.playing svg {
-            animation: spin 2s linear infinite;
+        @keyframes floatPath2 {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) translateX(-15vw) rotate(-360deg); opacity: 0; }
         }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        @keyframes floatPath3 {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-120vh) translateX(0) rotate(360deg); opacity: 0; }
+        }
+
+        /* Hiệu ứng hộp quà đập */
+        .beating-gift {
+            animation: beat 1.5s infinite ease-in-out;
+            transform-origin: center;
+        }
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(0.95); }
+            20%, 40%, 60% { transform: scale(1.1); }
+            50%, 70% { transform: scale(1.05); }
+        }
+        /* Hiệu ứng confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--color);
+            opacity: 1;
+            animation: fall 3s linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        /* Hiệu ứng hộp quà rung lắc */
+        .secret-gift:hover {
+            animation: shake 0.5s;
+            animation-iteration-count: infinite;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
     </style>
 </head>
-<body class="bg-pink-50 text-gray-700">
+<body class="bg-rose-50">
 
-    <!-- Phần 1: Lời Chào Mở Đầu Dễ Thương -->
-    <header id="main-header" class="h-screen w-full relative flex flex-col justify-center items-center text-center p-4 overflow-hidden bg-gradient-to-br from-pink-300 to-rose-300 cursor-pointer">
-        <!-- Hiệu ứng trái tim bay -->
-        <div class="absolute inset-0 z-0">
-            <div class="heart" style="left: 10%; animation-delay: 0s;">❤️</div>
-            <div class="heart" style="left: 20%; animation-delay: -5s; font-size: 1rem;">💖</div>
-            <div class="heart" style="left: 30%; animation-delay: -10s;">💕</div>
-            <div class="heart" style="left: 50%; animation-delay: -3s;">💗</div>
-            <div class="heart" style="left: 70%; animation-delay: -7s; font-size: 1.5rem;">💓</div>
-            <div class="heart" style="left: 85%; animation-delay: -1s;">💞</div>
-        </div>
-        
-        <div class="relative z-10 text-white text-shadow">
-            <!-- 
-                HƯỚNG DẪN: Thay đổi [Tên Người Yêu Cũ] thành tên của người đó.
-            -->
-            <h1 class="font-handwriting text-5xl md:text-7xl">Chúc Mừng Sinh Nhật,</h1>
-            <h1 class="font-handwriting text-5xl md:text-7xl mt-2">[Tên Người Yêu Cũ]!</h1>
-            <p class="mt-4 text-lg md:text-xl font-light">Một ngày thật đặc biệt, cho một người cũng thật đặc biệt.</p>
-            <a href="#message" class="mt-8 inline-block animate-bounce">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-            </a>
-        </div>
-    </header>
+    <!-- Màn hình hộp quà bay lúc đầu -->
+    <div id="intro-particles" class="fixed inset-0 z-50 bg-rose-100 transition-opacity duration-1000 overflow-hidden"></div>
 
-    <main class="container mx-auto px-6 py-16 md:py-24">
-
-        <!-- Phần 2: Lời Nhắn Ngọt Ngào -->
-        <section id="message" class="text-center max-w-3xl mx-auto scroll-animate">
-            <h2 class="font-handwriting text-4xl md:text-5xl text-pink-500 mb-6">Đôi Lời Nhắn Gửi</h2>
-            <!-- 
-                HƯỚNG DẪN: Bạn có thể thay đổi hoặc giữ nguyên lời nhắn dưới đây.
-            -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg shadow-pink-200/50">
-                <p class="text-lg leading-relaxed mb-4">
-                    Thời gian trôi thật nhanh phải không? Dù chúng ta không còn đi chung một con đường, mình vẫn luôn mỉm cười khi nhớ về những kỷ niệm đẹp mà chúng ta đã có. Cảm ơn cậu vì đã từng là một phần đáng yêu trong cuộc sống của mình.
-                </p>
-                <p class="text-lg leading-relaxed">
-                    Nhân ngày sinh nhật cậu, mình chân thành chúc cậu một tuổi mới thật rực rỡ, luôn mạnh khỏe, bình an và đạt được mọi ước mơ của mình. Mong cậu sẽ luôn giữ vững nụ cười tỏa nắng và tìm thấy niềm vui trong mỗi khoảnh khắc.
-                </p>
-                 <p class="text-lg leading-relaxed font-semibold mt-4 text-pink-500">
-                    Happy Birthday to you! 🎂
-                </p>
-            </div>
-        </section>
-
-        <!-- Phần 3: Lời Chúc Cho Tương Lai (được đẩy lên) -->
-        <section id="future" class="text-center max-w-3xl mx-auto mt-20 md:mt-24 scroll-animate">
-            <h2 class="font-handwriting text-4xl md:text-5xl text-pink-500 mb-6">Và Cho Chặng Đường Phía Trước...</h2>
-            <p class="text-lg leading-relaxed bg-white p-8 rounded-2xl shadow-lg shadow-pink-200/50">
-                Mong rằng tuổi mới sẽ mở ra một chương mới thật nhiều niềm vui, cơ hội và thành công. Hãy luôn là phiên bản tốt nhất của chính mình và sống một cuộc đời thật trọn vẹn nhé!
-            </p>
-        </section>
-
-    </main>
-    
-    <!-- --- HIỆU ỨNG MỚI: HỘP NHẠC --- -->
-    <div id="music-box" title="Phát nhạc">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-12c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 6l12-3" />
-        </svg>
+    <!-- Màn hình chờ vào trang chính -->
+    <div id="intro-screen" class="fixed inset-0 z-40 bg-rose-100 flex flex-col justify-center items-center text-center p-4 opacity-0 transition-opacity duration-1000 pointer-events-none">
+        <h1 class="font-pacifico text-5xl md:text-7xl text-pink-500 mb-8">Chúc Mừng Sinh Nhật!</h1>
+        <button id="enter-button" class="bg-pink-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">
+            Mở quà nè!
+        </button>
     </div>
 
+    <!-- Nội dung chính của trang web -->
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000 overflow-y-auto h-screen">
+        <div class="container mx-auto p-4 md:p-8 text-center">
+            
+            <header class="my-8">
+                <h2 class="font-pacifico text-4xl md:text-6xl text-pink-500">Chúc mừng sinh nhật tình yêu của anh!</h2>
+                <p class="text-lg text-gray-600 mt-4">Hôm nay là một ngày thật đặc biệt, vì đó là ngày em đến với thế giới này.</p>
+            </header>
 
-    <!-- Phần chân trang -->
-    <footer class="text-center py-8 mt-16">
-        <p class="text-pink-400">
-            <!-- 
-                HƯỚNG DẪN: Thay đổi [Tên Của Bạn] thành tên của bạn.
-            -->
-            Thân gửi từ, [Tên Của Bạn]
-        </p>
-    </footer>
+            <!-- Hộp điều ước -->
+            <section class="my-16">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Gửi một điều ước cho tuổi mới!</h3>
+                <div class="max-w-md mx-auto">
+                    <input id="wish-input" type="text" placeholder="Em hãy gõ điều ước vào đây..." class="w-full p-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:border-pink-500 mb-4">
+                    <button id="wish-button" class="bg-violet-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">Gửi điều ước bay xa</button>
+                </div>
+            </section>
+
+            <!-- Hộp quà bí mật -->
+            <section class="my-16">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Anh có một món quà bí mật cho em nè!</h3>
+                <div id="gift-box" class="inline-block cursor-pointer secret-gift">
+                    <svg class="w-32 h-32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <!-- Box Lid -->
+                            <rect x="10" y="25" width="80" height="15" rx="5" fill="#fbcfe8" stroke="#f472b6" stroke-width="2"/>
+                            <!-- Box Body -->
+                            <rect x="10" y="40" width="80" height="50" rx="5" fill="#fce7f3" stroke="#f472b6" stroke-width="2"/>
+                            <!-- Vertical Ribbon -->
+                            <rect x="44" y="25" width="12" height="65" fill="#f9a8d4"/>
+                            <!-- Horizontal Ribbon -->
+                            <rect x="10" y="57" width="80" height="12" fill="#f9a8d4"/>
+                            <!-- Bow Left -->
+                            <path d="M40,25 C20,25 20,0 45,10 Z" fill="#f472b6"/>
+                            <!-- Bow Right -->
+                            <path d="M60,25 C80,25 80,0 55,10 Z" fill="#f472b6"/>
+                            <!-- Bow Center -->
+                            <circle cx="50" cy="18" r="7" fill="#db2777"/>
+                        </g>
+                    </svg>
+                </div>
+                <p id="secret-message" class="text-xl text-pink-600 mt-4 opacity-0 transition-opacity duration-500 font-semibold">"Món quà lớn nhất chính là có em trong đời!"</p>
+            </section>
+
+            <!-- Lời nhắn từ trái tim -->
+            <section class="my-16 bg-rose-100 p-6 md:p-8 rounded-2xl shadow-inner">
+                <h3 class="font-pacifico text-3xl text-pink-500 mb-4">Lời nhắn từ trái tim anh...</h3>
+                <p class="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+                    "Gửi em, cô gái bé nhỏ của anh, <br>
+                    Chúc mừng sinh nhật lần thứ [Số tuổi] của em! Mỗi ngày trôi qua, anh lại càng cảm thấy mình may mắn hơn khi có em ở bên. Em là ánh nắng sưởi ấm trái tim anh, là nụ cười làm bừng sáng cả một ngày. Anh mong tuổi mới của em sẽ tràn ngập niềm vui, hạnh phúc và những điều ngọt ngào nhất. Hãy luôn là cô gái rạng rỡ và đáng yêu như em vẫn luôn là nhé. Yêu em rất nhiều!"
+                </p>
+            </section>
+
+        </div>
+    </main>
 
     <script>
-        // JavaScript để tạo hiệu ứng xuất hiện khi cuộn trang
         document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-
-            const elementsToAnimate = document.querySelectorAll('.scroll-animate');
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
+            const introParticles = document.getElementById('intro-particles');
+            const introScreen = document.getElementById('intro-screen');
+            const enterButton = document.getElementById('enter-button');
+            const mainContent = document.getElementById('main-content');
             
-            // --- LOGIC HIỆU ỨNG MỚI ---
+            const wishInput = document.getElementById('wish-input');
+            const wishButton = document.getElementById('wish-button');
 
-            // 1. Hiệu ứng trái tim khi click
-            const header = document.getElementById('main-header');
-            header.addEventListener('click', function(e) {
-                const heart = document.createElement('div');
-                heart.classList.add('click-heart');
-                const hearts = ['💖', '💕', '💗', '💓', '💞'];
-                heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            const giftBox = document.getElementById('gift-box');
+            const secretMessage = document.getElementById('secret-message');
+
+            const giftSVG = `
+                <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <rect x="10" y="25" width="80" height="15" rx="5" fill="#fbcfe8" stroke="#f472b6" stroke-width="2"/>
+                        <rect x="10" y="40" width="80" height="50" rx="5" fill="#fce7f3" stroke="#f472b6" stroke-width="2"/>
+                        <rect x="44" y="25" width="12" height="65" fill="#f9a8d4"/>
+                        <rect x="10" y="57" width="80" height="12" fill="#f9a8d4"/>
+                        <path d="M40,25 C20,25 20,0 45,10 Z" fill="#f472b6"/>
+                        <path d="M60,25 C80,25 80,0 55,10 Z" fill="#f472b6"/>
+                        <circle cx="50" cy="18" r="7" fill="#db2777"/>
+                    </g>
+                </svg>
+            `;
+
+            // 1. Hiệu ứng hộp quà bay lúc mở đầu
+            function createFloatingGift() {
+                const particle = document.createElement('div');
+                particle.classList.add('gift-particle');
+                particle.innerHTML = giftSVG; // Thay thế emoji bằng SVG
                 
-                heart.style.left = `${e.clientX}px`;
-                heart.style.top = `${e.clientY}px`;
+                const animationPaths = ['floatPath1', 'floatPath2', 'floatPath3'];
+                const randomPath = animationPaths[Math.floor(Math.random() * animationPaths.length)];
                 
-                document.body.appendChild(heart);
+                particle.style.animationName = randomPath;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 5 + 7}s`;
                 
+                const scale = Math.random() * 0.8 + 0.7;
+                particle.style.transform = `scale(${scale})`;
+                
+                introParticles.appendChild(particle);
+
                 setTimeout(() => {
-                    heart.remove();
-                }, 1500);
+                    particle.remove();
+                }, 12000);
+            }
+            const introInterval = setInterval(createFloatingGift, 200); // Tăng khoảng cách để đỡ rối mắt
+
+            // 2. Chuyển từ màn hình intro sang màn hình chính
+            setTimeout(() => {
+                clearInterval(introInterval);
+                introParticles.style.opacity = '0';
+                introScreen.style.opacity = '1';
+                introScreen.style.pointerEvents = 'auto';
+                setTimeout(() => introParticles.remove(), 1000);
+            }, 5000); 
+
+            enterButton.addEventListener('click', () => {
+                introScreen.style.opacity = '0';
+                mainContent.classList.remove('hidden');
+                document.body.style.overflow = 'auto';
+                setTimeout(() => {
+                    introScreen.remove();
+                    mainContent.style.opacity = '1';
+                }, 1000);
             });
 
-            // 2. Hộp nhạc tương tác
-            const musicBox = document.getElementById('music-box');
-            let audioContext;
-            let oscillator;
-            let isPlaying = false;
-            let noteIndex = 0;
-            let noteTimeout;
-
-            const noteFrequencies = {
-                'C4': 261.63, 'D4': 293.66, 'E4': 329.63, 'F4': 349.23,
-                'G4': 392.00, 'A4': 440.00, 'REST': 0
-            };
-
-            const happyBirthdayTune = [
-                { note: 'C4', duration: 200 }, { note: 'C4', duration: 200 },
-                { note: 'D4', duration: 400 }, { note: 'C4', duration: 400 },
-                { note: 'F4', duration: 400 }, { note: 'E4', duration: 800 },
-                { note: 'REST', duration: 200 },
-                { note: 'C4', duration: 200 }, { note: 'C4', duration: 200 },
-                { note: 'D4', duration: 400 }, { note: 'C4', duration: 400 },
-                { note: 'G4', duration: 400 }, { note: 'F4', duration: 800 },
-                { note: 'REST', duration: 200 },
-                { note: 'C4', duration: 200 }, { note: 'C4', duration: 200 },
-                { note: 'A4', duration: 400 }, { note: 'F4', duration: 400 },
-                { note: 'E4', duration: 400 }, { note: 'D4', duration: 800 },
-                { note: 'REST', duration: 200 },
-                { note: 'A4', duration: 200 }, { note: 'A4', duration: 200 },
-                { note: 'G4', duration: 400 }, { note: 'F4', duration: 400 },
-                { note: 'G4', duration: 400 }, { note: 'F4', duration: 800 },
-            ];
-
-            function playNote() {
-                if (noteIndex >= happyBirthdayTune.length) {
-                    stopMusic();
-                    return;
-                }
-                const { note, duration } = happyBirthdayTune[noteIndex];
-                const freq = noteFrequencies[note];
-                
-                if (oscillator) {
-                    if (freq > 0) {
-                        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
-                        oscillator.gain.setValueAtTime(0.1, audioContext.currentTime);
-                    } else {
-                        oscillator.gain.setValueAtTime(0, audioContext.currentTime);
-                    }
-                }
-                noteIndex++;
-                noteTimeout = setTimeout(playNote, duration);
-            }
-
-            function startMusic() {
-                if (!audioContext) {
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                 if (oscillator) {
-                    oscillator.stop();
-                }
-                oscillator = audioContext.createOscillator();
-                const gainNode = audioContext.createGain();
-                oscillator.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-                oscillator.type = 'sine'; // 'sine', 'square', 'sawtooth', 'triangle'
-                oscillator.gain = gainNode.gain;
-                oscillator.start();
-                
-                noteIndex = 0;
-                isPlaying = true;
-                musicBox.classList.add('playing');
-                playNote();
-            }
-
-            function stopMusic() {
-                if (oscillator) {
-                    oscillator.stop();
-                    oscillator = null;
-                }
-                clearTimeout(noteTimeout);
-                isPlaying = false;
-                musicBox.classList.remove('playing');
-            }
-
-            musicBox.addEventListener('click', () => {
-                if (isPlaying) {
-                    stopMusic();
+            // 3. Chức năng gửi điều ước và bắn pháo hoa
+            wishButton.addEventListener('click', () => {
+                if (wishInput.value.trim() !== '') {
+                    triggerConfetti();
+                    alert("Điều ước của em đã được gửi đến các vì sao! ✨");
+                    wishInput.value = '';
                 } else {
-                    startMusic();
+                    alert("Em chưa gõ điều ước kìa!");
                 }
+            });
+
+            function triggerConfetti() {
+                const colors = ['#f9a8d4', '#f472b6', '#ec4899', '#fef08a', '#a78bfa', '#ffffff'];
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = `${Math.random() * 100}vw`;
+                    confetti.style.top = `${Math.random() * -50}vh`;
+                    confetti.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 3000);
+                }
+            }
+
+            // 4. Chức năng hộp quà bí mật
+            giftBox.addEventListener('click', () => {
+                secretMessage.style.opacity = '1';
+                giftBox.style.animation = 'none';
+                giftBox.style.cursor = 'default';
             });
         });
     </script>
-
 </body>
 </html>
