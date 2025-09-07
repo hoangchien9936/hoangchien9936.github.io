@@ -114,10 +114,11 @@
             <!-- Hộp điều ước -->
             <section class="my-16">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Gửi một điều ước cho tuổi mới!</h3>
-                <div class="max-w-md mx-auto">
-                    <input id="wish-input" type="text" placeholder="Em hãy gõ điều ước vào đây..." class="w-full p-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:border-pink-500 mb-4">
-                    <button id="wish-button" class="bg-violet-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">Gửi điều ước bay xa</button>
-                </div>
+                <!-- HƯỚNG DẪN: URL Formspree đã được dán vào đây -->
+                <form id="wish-form" action="https://formspree.io/f/xjkejryl" method="POST" class="max-w-md mx-auto">
+                    <input id="wish-input" type="text" name="wish" placeholder="Em hãy gõ điều ước vào đây..." class="w-full p-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:border-pink-500 mb-4">
+                    <button id="wish-button" type="submit" class="bg-violet-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">Gửi điều ước bay xa</button>
+                </form>
             </section>
 
             <!-- Hộp quà bí mật -->
@@ -165,6 +166,7 @@
             const enterButton = document.getElementById('enter-button');
             const mainContent = document.getElementById('main-content');
             
+            const wishForm = document.getElementById('wish-form');
             const wishInput = document.getElementById('wish-input');
             const wishButton = document.getElementById('wish-button');
 
@@ -229,14 +231,45 @@
             });
 
             // 3. Chức năng gửi điều ước và bắn pháo hoa
-            wishButton.addEventListener('click', () => {
-                if (wishInput.value.trim() !== '') {
-                    triggerConfetti();
-                    alert("Điều ước của em đã được gửi đến các vì sao! ✨");
-                    wishInput.value = '';
-                } else {
+            wishForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Ngăn chặn việc tải lại trang
+
+                if (wishInput.value.trim() === '') {
                     alert("Em chưa gõ điều ước kìa!");
+                    return;
                 }
+
+                const formData = new FormData(wishForm);
+                const wishButtonOriginalText = wishButton.innerHTML;
+                wishButton.innerHTML = 'Đang gửi...'; // Phản hồi cho người dùng
+                wishButton.disabled = true;
+
+                fetch(wishForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        triggerConfetti();
+                        alert("Điều ước của em đã được gửi đến các vì sao (và cả anh nữa)! ✨");
+                        wishInput.value = '';
+                    } else {
+                        response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                alert(data["errors"].map(error => error["message"]).join(", "));
+                            } else {
+                                alert("Oops! Có lỗi xảy ra, không gửi được điều ước.");
+                            }
+                        })
+                    }
+                }).catch(error => {
+                    alert("Oops! Có lỗi xảy ra, không gửi được điều ước.");
+                }).finally(() => {
+                    wishButton.innerHTML = wishButtonOriginalText; // Khôi phục lại nút
+                    wishButton.disabled = false;
+                });
             });
 
             function triggerConfetti() {
