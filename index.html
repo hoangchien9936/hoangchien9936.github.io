@@ -146,7 +146,7 @@
                         </g>
                     </svg>
                 </div>
-                <p id="secret-message" class="text-xl text-pink-600 mt-4 opacity-0 transition-opacity duration-500 font-semibold">"Chúc em sinh nhật luôn vui, luôn cười và luôn hạnh phúc"</p>
+                <p id="secret-message" class="text-xl text-pink-600 mt-4 opacity-0 transition-opacity duration-500 font-semibold">"Mọi điều tốt đẹp sẽ luôn đến và ở quanh em"</p>
             </section>
 
             <!-- Lời nhắn từ trái tim -->
@@ -154,7 +154,7 @@
                 <h3 class="font-pacifico text-3xl text-pink-500 mb-4 leading-relaxed">Lời chúc đắc biệt dành cho em</h3>
                 <p class="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
                     "Gửi em. <br>
-                    Chúc mừng sinh nhật tuổi 19 của em.  Chúc em luôn vui, luôn cười tươi vì em cười xinh lắm và luôn hạnh phúc. Chúc em tuổi mới tràn đầy năng lượng, thành công trên con đường em chọn, em sẽ luôn xinh hơn qua mỗi ngày, mọi điều tốt đẹp sẽ luôn đến với em. Cảm ơn em, em là điều tuyệt nhất trên thế giới này"
+                    Chúc mừng sinh nhật tuổi 19 của em.  Chúc em luôn vui, luôn cười tươi vì em cười xinh lắm và luôn hạnh phúc. Chúc em tuổi mới tràn đầy năng lượng, thành công trên con đường em chọn, em sẽ luôn xinh hơn qua mỗi ngày, mọi điều tốt đẹp sẽ luôn đến với em."
                 </p>
             </section>
             
@@ -189,16 +189,16 @@
                 <!-- ======================================================= -->
                 <p class="font-semibold mb-4">Gửi em,</p>
                 <p class="mb-4">
-                    Vậy là một năm nữa lại trôi qua, và chúng ta lại cùng nhau chào đón ngày đặc biệt này. Chúc mừng sinh nhật em, tình yêu của anh.
+                    Đến lúc này anh mới hiểu, yêu một người thôi chưa bao giờ là đủ nếu không biết trân trọng người đó đúng cách. Anh đã nhận ra điều đau đớn nhất không phải là những gì anh đã làm mà là cách anh khiến em phải hoài nghi về lòng tin của chính mình.
                 </p>
                 <p class="mb-4">
-                    Anh vẫn nhớ như in ngày đầu tiên chúng ta gặp nhau, nụ cười của em đã làm bừng sáng cả thế giới của anh. Kể từ giây phút ấy, anh biết rằng mình đã tìm thấy mảnh ghép còn thiếu. Cảm ơn em đã đến bên anh, cùng anh đi qua những vui buồn, và luôn là nguồn động lực lớn nhất.
+                    Anh không trách em đã chọn cách rời đi. Cũng không oán giận khi em chặn hết mọi liên lạc từ anh. Vì anh hiểu, ranh giới giữa yêu thương và tổn thương mong manh đến mức chỉ một phút lơ là cũng đủ để đánh mất. Thời gian qua anh đã nghĩ rất nhiều. Không còn là những lời biện minh mà là sự nhìn nhận thẳng thắn vào chính mình. Anh đã sai. Và hơn ai hết, anh là người phải trả giá cho những sai lầm của mình.
                 </p>
                 <p class="mb-4">
-                    Tuổi mới, anh chúc em luôn xinh đẹp, rạng rỡ, và thành công trên con đường em đã chọn. Hãy cứ là em, một cô gái mạnh mẽ, đáng yêu và đầy ắp yêu thương. Mọi khó khăn phía trước, đã có anh ở đây cùng em gánh vác.
+                    Nhưng anh vẫn hy vọng được nắm tay em đi tiếp trên hành trình này. Anh muốn bù đắp cho em,cho những ngày em đã từng một mình chịu đựng, cho những tổn thương em không đáng phải nhận. Anh không muốn đến để sửa chữa những sai lầm trong qua khứ rồi bỏ đi hay gây thêm tổn thương, anh muốn được ở bên em, được nhìn thấy em cười, dược chăm sóc cho em và làm em hạnh phúc.
                 </p>
-                <p class="font-semibold mt-8">Yêu em rất nhiều,</p>
-                <p class="font-pacifico text-pink-500 text-2xl">Chồng của em</p>
+                <p class="font-semibold mt-8">Cảm ơn em, em chính là vì sao mà anh được ban tặng. Nếu có thể, em hãy cho anh một cơ hội được quay về bên em </p>
+                <p class="font-pacifico text-pink-500 text-2xl">I will wait for you</p>
                 <!-- ======================================================= -->
                 <!-- KẾT THÚC PHẦN NỘI DUNG THƯ -->
                 <!-- ======================================================= -->
@@ -305,7 +305,7 @@
                 event.preventDefault(); 
 
                 if (wishInput.value.trim() === '') {
-                    alert("Em chưa gõ điều ước kìa!");
+                    alert("Em chưa gõ điều ước kìa");
                     return;
                 }
 
@@ -323,7 +323,7 @@
                 }).then(response => {
                     if (response.ok) {
                         triggerConfetti();
-                        alert("Điều ước của em đã được gửi đến các vì sao (và cả anh nữa)! ✨");
+                        alert("Điều ước của em đã được gửi đến các vì sao");
                         wishInput.value = '';
                     } else {
                         response.json().then(data => {
