@@ -87,6 +87,16 @@
             90% { transform: translate(1px, 2px) rotate(0deg); }
             100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
+
+        /* --- PHẦN CSS MỚI CHO LÁ THƯ --- */
+        .letter-modal {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .letter-content {
+            background-image: repeating-linear-gradient(to bottom, #fff 0px, #fff 24px, #e8e8e8 25px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            line-height: 25px; /* Giúp các dòng chữ khớp với dòng kẻ */
+        }
     </style>
 </head>
 <body class="bg-rose-50">
@@ -108,13 +118,12 @@
             
             <header class="my-8">
                 <h2 class="font-pacifico text-4xl md:text-6xl text-pink-500 leading-relaxed">Chúc mừng sinh nhật Em</h2>
-                <p class="text-lg text-gray-600 mt-4">Hôm nay là một ngày thật đặc biệt, vì đó là ngày em đến với thế giới này.</p>
+                <p class="text-lg text-gray-600 mt-4">Hôm nay là một ngày thật đặc biệt, vì đó là ngày thế giới này xuất hiện một thiên thần.</p>
             </header>
 
             <!-- Hộp điều ước -->
             <section class="my-16">
                 <h3 class="text-2xl font-bold text-gray-800 mb-6">Gửi một điều ước cho tuổi mới!</h3>
-                <!-- HƯỚNG DẪN: URL Formspree đã được dán vào đây -->
                 <form id="wish-form" action="https://formspree.io/f/xjkejryl" method="POST" class="max-w-md mx-auto">
                     <input id="wish-input" type="text" name="wish" placeholder="Em hãy gõ điều ước vào đây..." class="w-full p-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:border-pink-500 mb-4">
                     <button id="wish-button" type="submit" class="bg-violet-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-110 transition-transform duration-300">Gửi điều ước bay xa</button>
@@ -123,41 +132,80 @@
 
             <!-- Hộp quà bí mật -->
             <section class="my-16">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">Anh có một món quà bí mật cho em nè!</h3>
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Gift for you</h3>
                 <div id="gift-box" class="inline-block cursor-pointer secret-gift">
                     <svg class="w-32 h-32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <g>
-                            <!-- Box Lid -->
                             <rect x="10" y="25" width="80" height="15" rx="5" fill="#fbcfe8" stroke="#f472b6" stroke-width="2"/>
-                            <!-- Box Body -->
                             <rect x="10" y="40" width="80" height="50" rx="5" fill="#fce7f3" stroke="#f472b6" stroke-width="2"/>
-                            <!-- Vertical Ribbon -->
                             <rect x="44" y="25" width="12" height="65" fill="#f9a8d4"/>
-                            <!-- Horizontal Ribbon -->
                             <rect x="10" y="57" width="80" height="12" fill="#f9a8d4"/>
-                            <!-- Bow Left -->
                             <path d="M40,25 C20,25 20,0 45,10 Z" fill="#f472b6"/>
-                            <!-- Bow Right -->
                             <path d="M60,25 C80,25 80,0 55,10 Z" fill="#f472b6"/>
-                            <!-- Bow Center -->
                             <circle cx="50" cy="18" r="7" fill="#db2777"/>
                         </g>
                     </svg>
                 </div>
-                <p id="secret-message" class="text-xl text-pink-600 mt-4 opacity-0 transition-opacity duration-500 font-semibold">"Món quà lớn nhất chính là có em trong đời!"</p>
+                <p id="secret-message" class="text-xl text-pink-600 mt-4 opacity-0 transition-opacity duration-500 font-semibold">"Chúc em sinh nhật luôn vui, luôn cười và luôn hạnh phúc"</p>
             </section>
 
             <!-- Lời nhắn từ trái tim -->
             <section class="my-16 bg-rose-100 p-6 md:p-8 rounded-2xl shadow-inner">
-                <h3 class="font-pacifico text-3xl text-pink-500 mb-4 leading-relaxed">Lời nhắn từ trái tim anh...</h3>
+                <h3 class="font-pacifico text-3xl text-pink-500 mb-4 leading-relaxed">Lời chúc đắc biệt dành cho em</h3>
                 <p class="text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
-                    "Gửi em, cô gái bé nhỏ của anh, <br>
-                    Chúc mừng sinh nhật lần thứ [Số tuổi] của em! Mỗi ngày trôi qua, anh lại càng cảm thấy mình may mắn hơn khi có em ở bên. Em là ánh nắng sưởi ấm trái tim anh, là nụ cười làm bừng sáng cả một ngày. Anh mong tuổi mới của em sẽ tràn ngập niềm vui, hạnh phúc và những điều ngọt ngào nhất. Hãy luôn là cô gái rạng rỡ và đáng yêu như em vẫn luôn là nhé. Yêu em rất nhiều!"
+                    "Gửi em. <br>
+                    Chúc mừng sinh nhật tuổi 19 của em.  Chúc em luôn vui, luôn cười tươi vì em cười xinh lắm và luôn hạnh phúc. Chúc em tuổi mới tràn đầy năng lượng, thành công trên con đường em chọn, em sẽ luôn xinh hơn qua mỗi ngày, mọi điều tốt đẹp sẽ luôn đến với em. Cảm ơn em, em là điều tuyệt nhất trên thế giới này"
                 </p>
+            </section>
+            
+            <!-- --- PHẦN HTML MỚI: LÁ THƯ --- -->
+            <section class="my-16">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6">Một lá thư đặc biệt...</h3>
+                <div id="open-letter-button" class="relative inline-block cursor-pointer transform hover:scale-110 transition-transform duration-300">
+                    <!-- Phong bì -->
+                    <svg class="w-32 h-32" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path stroke="#f472b6" stroke-width="1.5" d="M1.5 8.67v10.83c0 .83.67 1.5 1.5 1.5h18c.83 0 1.5-.67 1.5-1.5V8.67L13.5 14.5a3 3 0 01-3 0L1.5 8.67z"/>
+                        <path stroke="#fbcfe8" stroke-width="1.5" d="M22.5 5.5l-9 6a3 3 0 01-3 0l-9-6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path fill="#f472b6" d="M12 13.5l10.5-7V5c0-.83-.67-1.5-1.5-1.5h-18C2.17 3.5 1.5 4.17 1.5 5v1.5l10.5 7z"/>
+                    </svg>
+                    <!-- Trái tim nhỏ trên phong bì -->
+                    <svg class="absolute top-1/2 left-1/2 w-6 h-6 text-red-500 -translate-x-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
             </section>
 
         </div>
     </main>
+
+    <!-- --- CỬA SỔ HIỂN THỊ THƯ --- -->
+    <div id="letter-modal" class="letter-modal fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center opacity-0 pointer-events-none transform scale-95">
+        <div class="letter-content w-11/12 md:w-2/3 lg:w-1/2 h-3/4 p-8 rounded-lg relative overflow-y-auto">
+            <button id="close-letter-button" class="absolute top-2 right-4 text-gray-600 hover:text-gray-900 text-4xl font-bold">&times;</button>
+            <div class="text-lg text-gray-800 text-left">
+                <!-- ======================================================= -->
+                <!-- BẠN CÓ THỂ THAY ĐỔI NỘI DUNG BỨC THƯ Ở ĐÂY -->
+                <!-- Sử dụng thẻ <p> cho mỗi đoạn văn -->
+                <!-- ======================================================= -->
+                <p class="font-semibold mb-4">Gửi em,</p>
+                <p class="mb-4">
+                    Vậy là một năm nữa lại trôi qua, và chúng ta lại cùng nhau chào đón ngày đặc biệt này. Chúc mừng sinh nhật em, tình yêu của anh.
+                </p>
+                <p class="mb-4">
+                    Anh vẫn nhớ như in ngày đầu tiên chúng ta gặp nhau, nụ cười của em đã làm bừng sáng cả thế giới của anh. Kể từ giây phút ấy, anh biết rằng mình đã tìm thấy mảnh ghép còn thiếu. Cảm ơn em đã đến bên anh, cùng anh đi qua những vui buồn, và luôn là nguồn động lực lớn nhất.
+                </p>
+                <p class="mb-4">
+                    Tuổi mới, anh chúc em luôn xinh đẹp, rạng rỡ, và thành công trên con đường em đã chọn. Hãy cứ là em, một cô gái mạnh mẽ, đáng yêu và đầy ắp yêu thương. Mọi khó khăn phía trước, đã có anh ở đây cùng em gánh vác.
+                </p>
+                <p class="font-semibold mt-8">Yêu em rất nhiều,</p>
+                <p class="font-pacifico text-pink-500 text-2xl">Chồng của em</p>
+                <!-- ======================================================= -->
+                <!-- KẾT THÚC PHẦN NỘI DUNG THƯ -->
+                <!-- ======================================================= -->
+            </div>
+        </div>
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -172,6 +220,28 @@
 
             const giftBox = document.getElementById('gift-box');
             const secretMessage = document.getElementById('secret-message');
+            
+            // --- PHẦN JAVASCRIPT CHO LÁ THƯ ---
+            const openLetterButton = document.getElementById('open-letter-button');
+            const letterModal = document.getElementById('letter-modal');
+            const closeLetterButton = document.getElementById('close-letter-button');
+
+            // Mở cửa sổ xem thư
+            openLetterButton.addEventListener('click', () => {
+                letterModal.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+            });
+
+            // Đóng cửa sổ xem thư
+            closeLetterButton.addEventListener('click', () => {
+                letterModal.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+            });
+            // Đóng khi click bên ngoài
+            letterModal.addEventListener('click', (event) => {
+                if (event.target === letterModal) {
+                    letterModal.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+                }
+            });
+            // --- KẾT THÚC PHẦN JS CHO LÁ THƯ ---
 
             const giftSVG = `
                 <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -191,7 +261,7 @@
             function createFloatingGift() {
                 const particle = document.createElement('div');
                 particle.classList.add('gift-particle');
-                particle.innerHTML = giftSVG; // Thay thế emoji bằng SVG
+                particle.innerHTML = giftSVG;
                 
                 const animationPaths = ['floatPath1', 'floatPath2', 'floatPath3'];
                 const randomPath = animationPaths[Math.floor(Math.random() * animationPaths.length)];
@@ -209,7 +279,7 @@
                     particle.remove();
                 }, 12000);
             }
-            const introInterval = setInterval(createFloatingGift, 200); // Tăng khoảng cách để đỡ rối mắt
+            const introInterval = setInterval(createFloatingGift, 200);
 
             // 2. Chuyển từ màn hình intro sang màn hình chính
             setTimeout(() => {
@@ -232,7 +302,7 @@
 
             // 3. Chức năng gửi điều ước và bắn pháo hoa
             wishForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Ngăn chặn việc tải lại trang
+                event.preventDefault(); 
 
                 if (wishInput.value.trim() === '') {
                     alert("Em chưa gõ điều ước kìa!");
@@ -241,7 +311,7 @@
 
                 const formData = new FormData(wishForm);
                 const wishButtonOriginalText = wishButton.innerHTML;
-                wishButton.innerHTML = 'Đang gửi...'; // Phản hồi cho người dùng
+                wishButton.innerHTML = 'Đang gửi...';
                 wishButton.disabled = true;
 
                 fetch(wishForm.action, {
@@ -267,7 +337,7 @@
                 }).catch(error => {
                     alert("Oops! Có lỗi xảy ra, không gửi được điều ước.");
                 }).finally(() => {
-                    wishButton.innerHTML = wishButtonOriginalText; // Khôi phục lại nút
+                    wishButton.innerHTML = wishButtonOriginalText;
                     wishButton.disabled = false;
                 });
             });
