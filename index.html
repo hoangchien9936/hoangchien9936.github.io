@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chúc Mừng 20/10 Các Con Vợ!</title>
+    <title>Chúc Mừng 20/10!</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,6 +60,7 @@
             z-index: 1000;
             transition: opacity 0.8s ease-out;
             backdrop-filter: blur(5px);
+            padding: 15px;
         }
 
         .intro-box {
@@ -71,6 +72,8 @@
             border: 2px solid var(--primary-color);
             transform: scale(0.9);
             animation: popInIntro 0.7s 0.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            max-width: 500px;
+            width: 100%;
         }
 
         @keyframes popInIntro {
@@ -239,6 +242,50 @@
             border-top: 1px solid #fde2e8;
             color: var(--secondary-color);
             font-weight: 600;
+        }
+        
+        /* Responsive adjustments for mobile devices */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .intro-box {
+                padding: 30px 25px;
+            }
+
+            .intro-box h2 {
+                font-size: 2rem;
+            }
+
+            .intro-box p {
+                font-size: 1rem;
+            }
+            
+            #enter-button {
+                padding: 10px 25px;
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 25px 20px;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header h2 {
+                font-size: 1.1rem;
+            }
+
+            .message-card {
+                padding: 20px;
+            }
+
+            h3 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
